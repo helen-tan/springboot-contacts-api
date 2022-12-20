@@ -1,8 +1,9 @@
 package com.springbootcontactsapi.springbootcontactsapi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,14 @@ public class ContactController {
     
     @Autowired
     private ContactService contactService;
+
+    // Get the list of all contacts
+    @GetMapping("/contact/all")
+    public ResponseEntity<List<Contact>> getContacts() {
+        List<Contact> contacts = contactService.getContacts();
+
+        return new ResponseEntity<>(contacts, HttpStatus.OK);
+    }
 
     // Get a Contact by id
     @GetMapping("/contact/{id}")

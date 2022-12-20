@@ -1,5 +1,7 @@
 package com.springbootcontactsapi.springbootcontactsapi.service;
 
+import java.util.List;
+
 import com.springbootcontactsapi.springbootcontactsapi.pojo.Contact;
 
 public interface ContactService {
@@ -11,4 +13,6 @@ public interface ContactService {
     void updateContact(String id, Contact contact);
 
     void deleteContact(String id);
+
+    List<Contact> getContacts();
 }

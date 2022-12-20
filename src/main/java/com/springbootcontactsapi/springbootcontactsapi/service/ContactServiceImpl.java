@@ -1,5 +1,6 @@
 package com.springbootcontactsapi.springbootcontactsapi.service;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,10 @@ public class ContactServiceImpl implements ContactService {
         contactRepository.deleteContact(findIndexById(id));
     }
 
+    @Override
+    public List<Contact> getContacts() {
+        return contactRepository.getContacts();
+    }
 
     private int findIndexById(String id) {
         return IntStream.range(0, contactRepository.getContacts().size())
