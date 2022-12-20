@@ -4,4 +4,6 @@ import com.springbootcontactsapi.springbootcontactsapi.pojo.Contact;
 
 public interface ContactService {
     Contact getContactById(String id);
+
+    void saveContact(Contact contact);
 }
