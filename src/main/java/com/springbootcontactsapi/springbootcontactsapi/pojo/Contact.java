@@ -1,4 +1,4 @@
-package com.springbootcontactsapi.pojo;
+package com.springbootcontactsapi.springbootcontactsapi.pojo;
 
 import java.util.UUID;
 

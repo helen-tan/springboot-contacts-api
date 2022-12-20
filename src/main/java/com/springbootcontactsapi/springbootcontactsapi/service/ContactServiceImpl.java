@@ -1,11 +1,11 @@
-package com.springbootcontactsapi.service;
+package com.springbootcontactsapi.springbootcontactsapi.service;
 
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springbootcontactsapi.repository.ContactRepository;
+import com.springbootcontactsapi.springbootcontactsapi.repository.ContactRepository;
 
 @Service
 public class ContactServiceImpl implements ContactService {
