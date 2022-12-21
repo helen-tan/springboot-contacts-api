@@ -48,10 +48,11 @@ public class ContactController {
 
     // Create a contact
     @PostMapping("/contact")
-    public ResponseEntity<HttpStatus> createContact(@RequestBody Contact contact) {
+    public ResponseEntity<Object> createContact(@RequestBody Contact contact) {
         contactService.saveContact(contact);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        // return new ResponseEntity<>(HttpStatus.CREATED);
+        return ResponseHandler.generateResponse("Resource successfully created", HttpStatus.CREATED, contact);
     }
 
     // Update a contact
