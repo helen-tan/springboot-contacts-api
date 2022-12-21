@@ -2,10 +2,14 @@ package com.springbootcontactsapi.springbootcontactsapi.pojo;
 
 import java.util.UUID;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class Contact {
 
     private String id;
+    @NotBlank(message = "Name cannot be blank")
     private String name;
+    @NotBlank(message = "Phone number cannot be blank")
     private String phoneNumber;
 
 

@@ -18,6 +18,8 @@ import com.springbootcontactsapi.springbootcontactsapi.exception.NoContactExcept
 import com.springbootcontactsapi.springbootcontactsapi.pojo.Contact;
 import com.springbootcontactsapi.springbootcontactsapi.service.ContactService;
 
+import jakarta.validation.Valid;
+
 @RestController // @Controller + @ResponseBody (serializes an object into json)
 public class ContactController {
     
@@ -48,7 +50,7 @@ public class ContactController {
 
     // Create a contact
     @PostMapping("/contact")
-    public ResponseEntity<Object> createContact(@RequestBody Contact contact) {
+    public ResponseEntity<Object> createContact(@Valid @RequestBody Contact contact) {
         contactService.saveContact(contact);
 
         // return new ResponseEntity<>(HttpStatus.CREATED);
@@ -57,7 +59,7 @@ public class ContactController {
 
     // Update a contact
     @PutMapping("/contact/{id}")
-    public ResponseEntity<Object> updateContact(@PathVariable String id, @RequestBody Contact contact) {
+    public ResponseEntity<Object> updateContact(@PathVariable String id, @Valid @RequestBody Contact contact) {
         try {
             contactService.updateContact(id, contact);
     
