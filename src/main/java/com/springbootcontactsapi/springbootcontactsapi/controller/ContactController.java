@@ -42,7 +42,7 @@ public class ContactController {
             return ResponseHandler.generateResponse("Success", HttpStatus.OK, contact);
         } catch(NoContactException e) {
             // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            return ResponseHandler.generateResponse("Resource no found", HttpStatus.NOT_FOUND, null);
+            return ResponseHandler.generateResponse("Resource not found", HttpStatus.NOT_FOUND, null);
         }
     }
 
@@ -61,7 +61,8 @@ public class ContactController {
         try {
             contactService.updateContact(id, contact);
     
-            return new ResponseEntity<>(contactService.getContactById(id), HttpStatus.OK);
+            // return new ResponseEntity<>(contactService.getContactById(id), HttpStatus.OK);
+            return ResponseHandler.generateResponse("Resource updated successfully", HttpStatus.OK, contactService.getContactById(id));
         } catch(NoContactException e) {
             //return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             return ResponseHandler.generateResponse("Resource not found", HttpStatus.BAD_REQUEST, null);
@@ -70,13 +71,15 @@ public class ContactController {
 
     // Delete a contact
     @DeleteMapping("/contact/{id}")
-    public ResponseEntity<HttpStatus> deleteContact(@PathVariable String id) {
+    public ResponseEntity<Object> deleteContact(@PathVariable String id) {
         try {
             contactService.deleteContact(id);
     
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return ResponseHandler.generateResponse("Resource deleted successfully", HttpStatus.OK, null);
         } catch(NoContactException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseHandler.generateResponse("Resource not found", HttpStatus.NOT_FOUND, null);
         }
     }
 
