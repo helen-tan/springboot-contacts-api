@@ -42,7 +42,7 @@ public class ContactController {
             return ResponseHandler.generateResponse("Success", HttpStatus.OK, contact);
         } catch(NoContactException e) {
             // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            return ResponseHandler.generateResponse("No such contact id", HttpStatus.NOT_FOUND, null);
+            return ResponseHandler.generateResponse("Resource no found", HttpStatus.NOT_FOUND, null);
         }
     }
 
@@ -57,13 +57,14 @@ public class ContactController {
 
     // Update a contact
     @PutMapping("/contact/{id}")
-    public ResponseEntity<Contact> updateContact(@PathVariable String id, @RequestBody Contact contact) {
+    public ResponseEntity<Object> updateContact(@PathVariable String id, @RequestBody Contact contact) {
         try {
             contactService.updateContact(id, contact);
     
             return new ResponseEntity<>(contactService.getContactById(id), HttpStatus.OK);
         } catch(NoContactException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            //return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return ResponseHandler.generateResponse("Resource not found", HttpStatus.BAD_REQUEST, null);
         }
     }
 
