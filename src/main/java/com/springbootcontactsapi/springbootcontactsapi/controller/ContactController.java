@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springbootcontactsapi.response.ResponseHandler;
 import com.springbootcontactsapi.springbootcontactsapi.exception.NoContactException;
 import com.springbootcontactsapi.springbootcontactsapi.pojo.Contact;
 import com.springbootcontactsapi.springbootcontactsapi.service.ContactService;
@@ -33,13 +34,15 @@ public class ContactController {
 
     // Get a Contact by id
     @GetMapping("/contact/{id}")
-    public ResponseEntity<Contact> getContact(@PathVariable String id) {
+    public ResponseEntity<Object> getContact(@PathVariable String id) {
         try {
             Contact contact = contactService.getContactById(id);
     
-            return new ResponseEntity<>(contact, HttpStatus.OK);
+            //return new ResponseEntity<>(contact, HttpStatus.OK);
+            return ResponseHandler.generateResponse("Success", HttpStatus.OK, contact);
         } catch(NoContactException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseHandler.generateResponse("No such contact id", HttpStatus.NOT_FOUND, null);
         }
     }
 
