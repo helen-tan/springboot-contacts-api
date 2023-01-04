@@ -72,7 +72,7 @@ public class ContactController {
     }
 
     // Delete a contact
-    @DeleteMapping("/contact/{id}")
+    @DeleteMapping("/delete/{id}/contact")
     public ResponseEntity<Object> deleteContact(@PathVariable String id) {
         try {
             contactService.deleteContact(id);
