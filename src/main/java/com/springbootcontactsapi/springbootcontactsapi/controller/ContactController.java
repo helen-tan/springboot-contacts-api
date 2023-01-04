@@ -72,7 +72,7 @@ public class ContactController {
     }
 
     // Delete a contact
-    @DeleteMapping("/delete/{id}/contact")
+    @DeleteMapping("/delete/{id}/contact") // path was changed to demo requestMatchers in securityConfig
     public ResponseEntity<Object> deleteContact(@PathVariable String id) {
         try {
             contactService.deleteContact(id);
