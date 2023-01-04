@@ -25,6 +25,7 @@ public class SecurityConfig {
             .csrf().disable()
             .authorizeHttpRequests() // any http request that is caught in the filter chain needs to be authorized
             .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN") // Apply Authorization on methods of type DELETE + must have the role "admin"
+            .requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER") // POST - must be ADMIN or USER
             .anyRequest().authenticated() // any request needs to be authenticated
             .and()
             .httpBasic() // these requests will be authenticated using basic authentication
