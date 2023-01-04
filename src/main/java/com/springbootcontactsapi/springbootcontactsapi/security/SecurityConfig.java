@@ -26,6 +26,7 @@ public class SecurityConfig {
             .authorizeHttpRequests() // any http request that is caught in the filter chain needs to be authorized
             .requestMatchers(HttpMethod.DELETE, "/delete/*/contact").hasRole("ADMIN") // Apply Authorization on this specific DELETE method + must have the role "admin"
             .requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER") // POST - must be ADMIN or USER
+            .requestMatchers(HttpMethod.GET).permitAll() // anybody can access get requests
             .anyRequest().authenticated() // any request needs to be authenticated
             .and()
             .httpBasic() // these requests will be authenticated using basic authentication
